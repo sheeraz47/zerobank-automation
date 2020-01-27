@@ -1,16 +1,22 @@
 package com.zerobank.stepdefinitions;
 
+
 import com.zerobank.pages.AccountSummary;
 import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.Driver;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
+
 import java.util.List;
 
 public class AccountSummaryStepDefinitions {
 
+
+
     AccountSummary accountSummary = new AccountSummary();
+
+
     @Then("Account Summary page should have the title {string}")
     public void account_Summary_page_should_have_the_title(String tile) {
         Assert.assertEquals(tile, Driver.get().getTitle());

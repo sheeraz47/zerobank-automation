@@ -2,7 +2,9 @@ package com.zerobank.utilities;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
 import java.io.File;
@@ -69,6 +71,15 @@ public class BrowserUtils {
     public static void clickWithJS(WebElement element) {
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", element);
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", element);
+    }
+
+    /**
+     * Performs double click action on an element
+     *
+     * @param element
+     */
+    public static void doubleClick(WebElement element) {
+        new Actions(Driver.get()).doubleClick(element).build().perform();
     }
 
     /**
@@ -141,6 +152,17 @@ public class BrowserUtils {
     }
 
     /**
+     * Changes the HTML attribute of a Web Element to the given value using JavaScript
+     *
+     * @param element
+     * @param attributeName
+     * @param attributeValue
+     */
+    public static void setAttribute(WebElement element, String attributeName, String attributeValue) {
+        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", element, attributeName, attributeValue);
+    }
+
+    /**
      * waits for backgrounds processes on the browser to complete
      *
      * @param timeOutInSeconds
@@ -184,5 +206,86 @@ public class BrowserUtils {
         }
         return listOfStrings;
     }
+
+    /**
+     * Switches to new window by the exact title. Returns to original window if target title not found
+     * @param targetTitle
+     */
+    public static void switchToWindow(String targetTitle) {
+        String origin = Driver.get().getWindowHandle();
+        for (String handle : Driver.get().getWindowHandles()) {
+            Driver.get().switchTo().window(handle);
+            if (Driver.get().getTitle().equals(targetTitle)) {
+                return;
+            }
+        }
+        Driver.get().switchTo().window(origin);
+    }
+
+    /**
+     * Moves the mouse to given element
+     *
+     * @param element on which to hover
+     */
+    public static void hover(WebElement element) {
+        Actions actions = new Actions(Driver.get());
+        actions.moveToElement(element).perform();
+    }
+
+    /**
+     * Extracts text from list of elements matching the provided locator into new List<String>
+     *
+     * @param locator
+     * @return list of strings
+     */
+    public static List<String> getElementsText(By locator) {
+
+        List<WebElement> elems = Driver.get().findElements(locator);
+        List<String> elemTexts = new ArrayList<>();
+
+        for (WebElement el : elems) {
+            elemTexts.add(el.getText());
+        }
+        return elemTexts;
+    }
+
+    /**
+     * Verifies whether the element is displayed on page
+     *
+     * @param element
+     * @throws AssertionError if the element is not found or not displayed
+     */
+    public static void verifyElementDisplayed(WebElement element) {
+        try {
+            Assert.assertTrue("Element not visible: " + element, element.isDisplayed());
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            Assert.fail("Element not found: " + element);
+
+        }
+    }
+
+    /**
+     * executes the given JavaScript command on given web element
+     *
+     * @param element
+     */
+    public static void executeJScommand(WebElement element, String command) {
+        JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+        jse.executeScript(command, element);
+
+    }
+
+    /**
+     * executes the given JavaScript command on given web element
+     *
+     * @param command
+     */
+    public static void executeJScommand(String command) {
+        JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+        jse.executeScript(command);
+
+    }
+
 
 }

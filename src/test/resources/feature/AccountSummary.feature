@@ -1,9 +1,11 @@
 @Account_Summary
-Feature: Account Summary is Displayed
+Feature: Account Summary is displayed
 
-  Background: Logging in to the web application
+  Background:
     Given user is on the login page
-    And user logs in with username "username" and password "password"
+    And user logs in with valid username and password
+
+
 
   Scenario: Account Summary page title
     Then Account Summary page should have the title "Zero - Account Summary"

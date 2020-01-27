@@ -1,30 +1,28 @@
 @Account_Activity
-Feature: Account Activity functionality
+Feature: Account Activity
 
-  Background: Logging in to the web application
+  Background:
     Given user is on the login page
-    And user logs in with username "username" and password "password"
+    And user logs in with valid username and password
 
   Scenario: Account Activity page title
-    Then Account Summary page should have the title "Zero - Account Account"
+    And Verify that page title is "Zero - Account Activity"
 
-  Scenario: Account drop down default option should be Savings
-    When User click on Account activity tab
-    Then default option should be "Savings"
+  Scenario: Default drop down option
+    Given user verifies that the default drop down option is "Savings"
 
-  Scenario: Account drop down should have the following options
-    When User click on Account activity tab
-    Then  drop Down option should be :
-      | Savings     |
-      | Checking    |
-      | Loan        |
-      | Credit Card |
-      | Brokerage   |
+  Scenario: Account drop down menu options
+    Given user verify that following options are available on account dropdown
+      |Savings     |
+      |Checking    |
+      |Savings     |
+      |Loan        |
+      |Credit Card |
+      |Brokerage   |
 
-  Scenario: Transactions table should have following column names
-    When User click on Account activity tab
-    Then Transaction table options are:
-      | Date        |
-      | Description |
-      | Deposit     |
-      | Withdrawal  |
+  Scenario: Transaction table
+    Given user verify that following options are available on transaction table
+      |Date        |
+      |Description |
+      |Deposit     |
+      |Withdrawal  |
