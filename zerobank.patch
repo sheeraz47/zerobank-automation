@@ -1,0 +1,231 @@
+Index: target/test-classes/feature/PayBills.feature
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/test-classes/feature/PayBills.feature	(date 1580102450520)
++++ target/test-classes/feature/PayBills.feature	(date 1580102450520)
+@@ -0,0 +1,24 @@
++@Pay_Bills
++Feature: Pay Bill
++
++  Background:
++    Given user is on the login page
++    And user logs in with valid username and password
++    And user is on Pay Bill page
++
++  Scenario: Pay Bills page title
++    Then Verify that page title is "Zero - Pay Bills"
++
++  Scenario: Verify that user complete pay operation
++    When user completes a pay operation with following data
++        |Amount     |Date       |Description  |
++        |100        |2020-01-01 |Payment      |
++    And user verifies that message "The payment was successfully submitted." should be displayed.
++
++
++  Scenario: Verify pop-up window notification when we left blank date or amount
++    When user blank leave blank the the following data
++      |Amount     |Date       |Description  |
++      |           |           |             |
++    Then verify pay operation error message "Please fill out this field." is displayed
++
+Index: target/test-classes/feature/AccountActivity.feature
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/test-classes/feature/AccountActivity.feature	(date 1580102450519)
++++ target/test-classes/feature/AccountActivity.feature	(date 1580102450519)
+@@ -0,0 +1,28 @@
++@Account_Activity
++Feature: Account Activity
++
++  Background:
++    Given user is on the login page
++    And user logs in with valid username and password
++
++  Scenario: Account Activity page title
++    And Verify that page title is "Zero - Account Activity"
++
++  Scenario: Default drop down option
++    Given user verifies that the default drop down option is "Savings"
++
++  Scenario: Account drop down menu options
++    Given user verify that following options are available on account dropdown
++      |Savings     |
++      |Checking    |
++      |Savings     |
++      |Loan        |
++      |Credit Card |
++      |Brokerage   |
++
++  Scenario: Transaction table
++    Given user verify that following options are available on transaction table
++      |Date        |
++      |Description |
++      |Deposit     |
++      |Withdrawal  |
+\ No newline at end of file
+diff --git target/test-classes/com/zerobank/stepdefinitions/AccountActivityStepDefinitions.class target/test-classes/com/zerobank/stepdefinitions/AccountActivityStepDefinitions.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..313e49b5b4a454a0e7a8062fccf417a074c69f64
+GIT binary patch
+literal 3041
+zc$}?Pe^(Pn6uk?<K-dDJMn$m;XbC}GwYFAKYA|SRBeVvg)Y^2|3}JAy8}~;5ZTkiK
+zX?l)TsOR(p^h5RZ&Fqr!BUq2^AK97Aym#NdZ{ED!zyAK?PXJf(O9}(XB{7vk8**JZ
+zi9201%XecMcRO(}g)eZw8(-q96bg9IiJ25;@wHs}CW(hB^q|;@IXON`VIB)|_O0|@
+zln&oXu*Y)adpUcO#1Bc7H1smdaziJ`S%IjFU_-;%g5_4t=iGCbnDf-Eu?qLi+-|E0
+z4To+DM+B1^+B0MG8WMNhGAFo#aQIAEUE<yxTe4}Tzu;QTo@btr|Kr6(up)d7w|0l}
+z170ihWr-_XXJ61FZReZY#NlL}dt!N`6s)kIB#D*+5!k#Wv5#d6tE|pUn>iJ;7<j^|
+zOh}>~%0%+ow@rW#DW0hEdEpBpnsXdCU@Dr1fr4;NE3}k2Q#o_TTv*`_Id;^U9TMvB
+zykcZXMuuc$sBnhxjTgR(^0S63q0haN;x4!!u@6>wiL|rO4oYRut(D5|np1LXGPu&y
+z!`Exv3V3-|tx-sys8L9x;CdC)t#RiWGktDzM}$>#fiF$lyvm(Go|Rm-0u7@rZT+xT
+zbG^U}g;`XF<Z`N|+Iym|<W5Kh#<qe;Eh#W!1%^~$NCifuV7LB!Q-6GR%dTy^YqT3H
+z_Djs;B?>BRSuiEaL0qRQITBgJk@$qeK-gwM_<=g#t}+W)TxNZH4K$>8m*YllyCl!<
+zvAwy!J|@Y(t0*cC3qp@vM)wkE=_5(yoB4`sqoFv?kZ+J;qoLTKoW+WbrsC=MNnGGD
+z$7hx*q#)8d{XTSd;21GZs_2HE#qSFFXXNeI^`cCTjzOHETk`K6M#m|f*6}0EB*<+^
+zx}_U;iLRwl7JkiU8@!x^rK1d<#IlYGR+11pR`FEBkZEQg-xlRt!;Ebg(Eal86EhO|
+z_%gLYTSpa+4i_~I=icdhNEOdCB#W$08S`~`IF|&C0YV*htm#<CisV2tp5vO17x+oX
+z&$vc6=Rb5jD(Gf?%`UB~E1kA%VLhF7a(nyunYXtEY9Pu}!{9DTvY06xok-rJ+wM_=
+zuW+&+%8VV<Xd*+p9D{E)(9lUpb5Z*}N^mV2aGyk24N0(>^QlNFu+G$E`dP?qO2PFO
+zeZ8<ZEiG2$HB7hSH$}PXSg)~QMZ@`4FO8P6r{p`Zn~tX3$mfmBL6!$*uGykTT08Hs
+zkphlHjeKe&enHLgbqYLkzyVHq?i!`;5iL;S5^GG5aUyeHrGk#)uJHUID(U8HW%%H8
+zZn90vgH*9cGw+=I_yXpso#m;WMFELeFM-MKIlCNXTyogg+4pzy(>ofHubTKB*AA=B
+z46AY<L-YYPKp$2b{iu`BvxDZ;edzfi{hLI)+Uv`{hL(MUw#C<I{~d|nXsrzfJ>_>8
+z(2E2P6B?jL_87*9!aa*~WFfH@2us?Y%DzP6B|5fnh`uk9<D2N*LYIb3q?)ijWDKMU
+z?l=)Vp`g=|dkigSA7PY2WN6+^;~4$2KE`P{--!Av0VQZODNKL&CiE?Q(1r(Z(6e~{
+zHF{?*^!L5O;f_u8k6(C&BU?BsnH*~}8NeZW4icj?#AS$P!}J`%MUp02Wh3|oD-#zK
+zs~+0DNdMZ%>jW<0G7;HkdL?4|F%4Jo32jKGi)5;DIUXe_y@}&7llC2{9wX%Jj(qes
+vBKP7`TqDTO8pj}4uG8#>QZunP{!JQg9T@*a>-Z+czx4mapQPb)wRQU+WWqy=
+
+diff --git target/test-classes/com/zerobank/pages/PayBills.class target/test-classes/com/zerobank/pages/PayBills.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..249dec8f82c5e551694b5da7140f22d12569512d
+GIT binary patch
+literal 3190
+zc$}S933t;*5FQyPCb4p2j&Rj9P@6z7S1)puoGsuSjYA*}saZ=KdqLh6(kj99p#4eh
+z>npT<?GNaW>g%jz*(BLOU-MpeR`bp5d~>YizyJCDF95g+KX$_)SRD}kCAz@|+64o!
+zm4a#-YQWUP6SX{5i_-;l;3*L5!R-bUo~gxCkA4bd3IYR8x}-ttT+Rr-#k@L^Oz;Kj
+z`=m+@$QFfHEeMzLXQbd$hjJFw3lC^z&Y^Y6<(L6OD*>0RPS=>vDh{3ET*&Yc-+=R4
+zcRz4l;mN{0<Mwm|k2qxc%6LOE>ClPX`Rui;SF?(ios}Zo&@6FXhvqg7=(8MVJze6<
+zq%qAL2OW=XFnc10X61@flqIR;HnYS4GjwfIMbFUAcgvw#oz+V$OCbH0$v|w<1e8$^
+zsqeDsZ`ssileA4_J5FzGptK4eu&L!SR~4mYl!<MqA7je2|BdVdDFrv+cq=`hY*Ra8
+z?<?adza_U>?F6$8I2`BK&aP$9-A>GaqY?e3tp&kp;|_NNIW3+W(ACP!fTYU6fK)RV
+zm1vtT2H4FXecd+g{=JM1II>MWw#BU7GuA^K>dCStxQu#0Y<rRJEGwr{P+27v^xUX<
+zbZa6v9I#PruRnTS<$uNvJgY{0IxjrRs(dE!Jj$)cfnGP1S64`9k<>Bv0C&rr?nDgB
+zJk&*1ow99@s<F)MG9j_LX%$y<k5#OWtY)bs%-MIA9jp7TCh=KMxU*shtCx1Ia;(Kd
+z$BD+p?THm-i}*FX0`c=y*ts{liRZ-KOnby;qJ-DbQe#|vLbgdEkjyC*nXj&LR|$(q
+zWZ+>HuJ3`z-}NS#98;4o8!q19Fp#Qs=Q!g`PU02MUtGg^nh`dh-B)CsE(Y}q^{`J4
+zY6gqKBF-A|n0jt1ld{IJI%kTOs25&PPgDqhT5xe_{6c*DF=*QIC=TaxH1zlK5pjp`
+zYM~@O#;arhPZJW3Mq+S3inpRQ3#nGWQ>~u%`BX0Nx}HZh%v6j{zuA%8Ti=!eD@3is
+z&;xk*)Sk<oZjy)wySpTCBIrC*h3tu|bwv>{VF4CXux-K)JU8JMWN?1k%w}rDE74~G
+zP99A`!-N;`jS1tBF=0|Iw;_{)Z%z0PzBk~)e`0JxPI)fCOA~&8M<$G@n5W*-Ry{h6
+z1HK%-GlqAeYDk%6%EA*nKK1U)um=M>gh_liD4$hP6a?Ro$^2ba^s{fDX7wJW+`dN}
+zc+BbiMp0j%uzx3XM@60;bBn8UEBKAoc2?P7Gl%o<x>_pAk!VV$8_n<RDt#{D9Dc|L
+z@t435paEoXJ&I3hl*jP@xDO{#4C#QAC{F2s(<sj9fU_vx(*ao&=XAjPD28>wc@!6P
+zzy~OD`+&R;7g3DpfJ-PY>wr-dS9CxD#Z?_}4aIdGa0A6n9q=KFk92u_jN%g=@F|L0
+zx}(NWjO&026q7pOGZeRVz!ZvU9WaApRtL<XnAZWHqxb^uKmzWn-<xo6Z$3px;s)O*
+zxGo{2iff?k7<mQ8Pod8;uAQMW4PWAFMh36~C6orN!u_W6Yt*XWwksJ(yoTh+FVK<v
+z6FS!qT`K(ssRW?naHP20QglU%(UzjSBUB6}OY6y>Asy-4Oim&ffDK$9!ExAxJbaB!
+zDI>GTA-kIqgC;w*TZ0E7;}v*_yF|EK$K9cD_Z99`2{!P&D2s=PC~WW#FxQb#&nxI%
+zxP0kX=xej+4J|5I3kz?s9Y)SZUaiQ3I4CNziCj04Wdir*1EcgG7^R9Q)G!J=Aj;!?
+JQAl_~<zFSP=^g+8
+
+diff --git target/test-classes/com/zerobank/pages/AccountActivity.class target/test-classes/com/zerobank/pages/AccountActivity.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..42e434cefacc213dcb5c7aba66fa77fd71d9f953
+GIT binary patch
+literal 1284
+zc$|$>YflqF6g^W)OUo*VSb3?XJX(sfiuy?;@{q)&0b>cq5YkMyLmAo5)ZJMGf0ZUi
+zq9*<Tf0Xg=wi+yi`l0uBX3jZt?w!3qe|`G_;1M3D(T98zg%pyQOCyG280PzN7x$7_
+zNWx|q;EtmMW!632T-WavL$;*7x~-c+z2mkoT%lypuwRSnb5}HkGEW#rUlBt##E$f3
+z)fFpBX~T`w%4e9qknRV~ruK}zAysYlgd}3J#$a(?Y2W{XmYEJOTg|rSVCgMC;&x!9
+zYnP-ST1b^;U2zk5f?=`ac&S?j%Oud__@q3sD{D{lXKm#7vddW=-Au>E<I3kw<YSvt
+zt!vs18fud_1hHpZY}c)v#Z~sT_eYP^%mG#AxY9Y?QY)?96#^bfbHdPj+~gr((zc7c
+z&my%Jq{7>nis9A#p3NB&OHxU*Ox6o?I}GtPU8CX$N>Yi<pivcGWRPK~q#f?=a8HKo
+z_Ga81$mn$(-LO9hPgl7*w41yxe7nOHHD{zQ%(~d;fosatKgWpLR=Xv`g}GL{U9ReO
+z*?3abiIMOl97F!n_Yb7q5+q8xtOL&x8#44a++kuNyu-p6#u;Y*OVL6K>5y^X!UHTO
+z@zA0n$T8%)m&`DJ0ce%`;wAlKm@0Jpq{0`;P}er3=b!6Yj(XO0sBT}5U`Ueuwm3GJ
+zq<QY65s!m~HB;=TRX=5meph^4r8Iy+8un{+5W~<vfa^YnDc!gXkfC(*ob-r~Q9`ru
+zStw4>kxiLV?k%2zeTu|xQA|XeDcq)LwE(z-EM@xEk!zDT(L;D3^Bu7_#n0$DMZ7fs
+k1-)O9VEFh~Eghl8NNGG$%(Pf-MT^d-FdZ40i8!;r0R+BJSO5S3
+
+diff --git target/test-classes/com/zerobank/utilities/CustomMethod.class target/test-classes/com/zerobank/utilities/CustomMethod.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..de23b657d2d94ed560211a4f21d9c2fa0019a9d3
+GIT binary patch
+literal 3659
+zc$}?P*>@9F9R8*aosbR%+EUpHp={{_5yb_9-HS%j77bDmw`p?Q4kR;SW&#v<#eLrw
+z+<o8`e85(Y9-n>j`0A6s`8Rlu;&*S-5YlM-V9v?h-`xAVzx#c^?aohsfA<4`-S|3$
+zEjXm(z7P&$EQBLCs^k8pIEDv;crb*A@UV_Yf-rTA2ayUQtwV&+fJ61@#Y8>&Fex8X
+zI;?s$;dl@yg2;qWgKP*JVatajb#wA@G6WZ%lzjQf>o}$3bO>Rbk&kH|XLUTPp>CgL
+zTYk5O+DQ9h4S@kCEi^1oShg6+XUBzm$Q;jbrZM59%*<iawd8woGT={Ho`$W7l#`8~
+z6|OUG+9#rU-^y6NCA{cB-t(R8u<)mxbWB4iEi%Fv`z^V5RU~oTJY_~Rrac)=`mSY9
+z#v}rbYnuy8w&g@8s2m+}lKIq>+&6S4C33#y*fiHsp*3i^BIP^o^oZjRWpn;?x$>%l
+zGIisl<@14@=}$>|^T23Wmh{ckiD5HWq}!5m>{G(^6PD+X4f#&o_Qj-dHMAAENaj(w
+z8f&kdpo2Z1s-e?jd?+Kb!uB<U6OKC>b#lT!X+}Ld$F}m>=vYaEyY!4aOpI$-G2diB
+zE)v)Ev6;@z#pkAqE&CQauRA8AS-I(&Yl@7ir{gglk84<(v?guS&$~SCXr&t#abBgP
+zs-MRARrtOTq@sULOaE;74@<?6N<&BfXOLy48$G80a8P(DVW$;9&Eh|<VTlB~i-2u$
+zI-$arn2)3y_r-dsWm5S2E!Xpt<dE`3dQ|1OhTV~c7`9i-{yI<D(XhShb}ygHk#00^
+zMGFVY0#7=5H&ra~mF3mHQyySoE4DF_D-YB0gn=jVl#ZtjJcDO7Y+A7Xb(}Ns9G=(E
+zI^u*qE{BzBdaenC#Th!w)A53V7qLS_WU<{s!wsdyu;qnq#}5msu~S1+l`f*8Ic}da
+zGgdmB6K>Y>JWhI4ZXT5VjxQ2lN_gHxK2x%x;@RiA=Cll|ftT>IfmiUVf!FZ5h7JE6
+zG6QemO(qt3!N6O1+rT?`*T8#t-@pg>(7;FdSjTw-pWssipW$=q;V&4KdC9|yUsQZ$
+z^u9DOg0I-17t!#q3-svtag|FA*XJ^8=GsKu7p_UC&v~d6s)KCNyk=^d;2L68?u}zr
+zu9C!j8?kwoWlGU<L*ZhIPYkJ?VFE;|ZEwH-`sAJVe32zCC-0YEFb4_1Ck$a`V`Ujr
+zHq9=OlW!U3PS7gRZi$rF`kXuDB`{@rBjSv&ZfSxD*y^P@QeL<P7fWsW=};AgQf2F|
+z$YsnFYjm*OnFCX%n-nMW!cK|Uzs*-Q7|fZjC*tx-t9q@o{pl=_ycnI3EaUA}S{S*R
+z>2!sGA}7hYj;no{jD|JkZF9iM$lR27xl~$JZH4g+$j;1I%)h7QH;-qX70R`7d3?O8
+zQ#UW%L=Vdkf%b*eunC*_B`AM&&}2vCb35On99hj+((x^{OB8AlDJlWW(GFSZN&y|{
+z<hT@F*iqd4E46Dl?&+xg9yK$lok3vi0`J6cP}itmM(_ewD><ZOL&*kZIWFUP3AO5g
+z<uotHbu=%>?WpI91acGKfHiz>qt-gCKr2>LUdQjw^<=e$@^*5IkkgHnZl@$ccOXFB
+zAa*K->y>mPrHGPtDN1{2{bu!<EU5-Ybu2lcV=4djK?1o2x00RY`3u2FfJ0Z%aP(V#
+zr*_O@g@)m-S*+C9^LA2b)bJykMt01inf+x|W6NdSus6`TCNP85Ggvc=wKW*KaP{ZT
+zi!>Ba+}6^~AgUnov=PfLqUj}?0UkZaVHc6z#`yp>Hjv#O<*^~`MT}z*cVHhSjU&*a
+zf+5$sOKUw`ll&S`^B0!u=+)8pC++pCP!EviV2S2890SrH|3b6%8qLlE&pB4Vm9c73
+zuIlFbJ;dBg|M!twzhV?7`Zg>p@z_nY1s+}Vc*wQx(%Sy2Jlcvp?j(=9N<4n2ZONm5
+zjz=entRv9Q8LThP4RflMRhaH>J&(0rovpLjP(x}P3zW{)UcGSjkFIO1+K2-<z-NMa
+zHH>CnN$W96RtM?tQSwZdVz!mp8OPm<VZY)fS?uNRn99X%v=JlLJBl7DX!Vq|dP-V7
+z)GB0W&EMFnSodmwGI0vDhe>;chZm~x08L59HC;jYD9d?MqVqD^RGcoB3Ol4!j&b7y
+Y3U9&JO)4U?xI^S~kLn5csy)en04&p=<^TWy
+
+diff --git target/test-classes/com/zerobank/stepdefinitions/PayBillsStepDefinitions.class target/test-classes/com/zerobank/stepdefinitions/PayBillsStepDefinitions.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..6760f125f880a064fdb196b1ede3364c31ad2eb8
+GIT binary patch
+literal 3515
+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
+M?F=6mb&#3=0WpMz*Z=?k
+
